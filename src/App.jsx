@@ -1,30 +1,29 @@
-import Navbar from "./components/Navbar";
-import { Element } from "react-scroll";
+import Navbar from './components/Navbar';
 
 export default function App() {
-   console.log('App is rendering');
   return (
-    <div>
+    <div className="bg-pink-100 min-h-screen">
       <Navbar />
-
-      <Element name="home" className="h-screen bg-red-100 flex justify-center items-center">
-        <h1 className="text-4xl">Home</h1>
-      </Element>
-
-      <Element name="about" className="h-screen bg-green-100 flex justify-center items-center">
-        <h1 className="text-4xl">About</h1>
-      </Element>
-
-      <Element name="projects" className="h-screen bg-blue-100 flex justify-center items-center">
-        <h1 className="text-4xl">Projects</h1>
-      </Element>
-
-      <Element name="contact" className="h-screen bg-yellow-100 flex justify-center items-center">
-        <h1 className="text-4xl">Contact</h1>
-      </Element>
+      
+      <section id="home" className="h-screen flex items-center justify-center">
+        <h1 className="text-4xl font-bold">Home</h1>
+      </section>
+      
+      <section id="about" className="h-screen flex items-center justify-center">
+        <h1 className="text-4xl font-bold">About</h1>
+      </section>
+      
+      <section id="projects" className="h-screen flex items-center justify-center">
+        <h1 className="text-4xl font-bold">Projects</h1>
+      </section>
+      
+      <section id="contact" className="h-screen flex items-center justify-center">
+        <h1 className="text-4xl font-bold">Contact</h1>
+      </section>
     </div>
   );
 }
+
 
 
 
