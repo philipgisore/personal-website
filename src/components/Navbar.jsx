@@ -29,16 +29,16 @@ export default function Navbar() {
         setActive(id);
         
         const element = document.getElementById(id);
-        if (element) {
-            const navbarHeight = 80;
-            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = elementPosition - navbarHeight;
+            if (element) {
+                const navbarHeight = 80;
+                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - navbarHeight;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
     };
 
     useLayoutEffect(() => {
@@ -63,34 +63,34 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className='fixed top-0 left-0 w-full z-50 bg-zinc-900 shadow-md'> 
-            <div className='flex justify-center py-4'>
-                <div 
-                    ref={containerRef} 
-                    className="flex bg-[#232329]/90 rounded-xl px-4 py-2 gap-4 relative border border-white/20 shadow-none"
-                >
-                    {/* Background container (moved behind items) */}
-                     <div className='absolute inset-0 bg-[#232329]/90 rounded-xl -z-10' />
-                    {items.map((id) => (
-                        <button
-                            key={id}
-                            onClick={() => handleNavClick(id)}
-                            className={`px-4 py-2 rounded-xl cursor-pointer capitalize transition-all duration-200 relative z-10 text-center text-white ${
-                                active === id 
-                                    ? "font-semibold bg-gray-600" 
-                                    : "hover:bg-zinc-700/50"
-                            }`}
-                            data-id={id}
-                        >
-                            {id}
-                        </button>
-                    ))}
-
-
-                </div>
-
-                <Resume />
+        <nav className='fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-4 bg-transparent text-white'>
+            {/* Logo */}
+            <div className='text-white font-bold text-lg'>
+                <span className='text-orange-500'>Pg.</span> Philip Gisore
             </div>
+            
+            {/* Center Navigation Items */}
+            <div 
+                ref={containerRef}
+                className='flex items-center gap-8 relative'
+            >
+                {items.map((id) => (
+                    <button
+                        key={id}
+                        onClick={() => handleNavClick(id)}
+                        className={`px-4 py-2 capitalize transition-all duration-200 relative z-10 ${
+                            active === id 
+                                ? "text-orange-500 font-medium" 
+                                : "text-gray-300 hover:text-white"
+                        }`}
+                        data-id={id}
+                    >
+                        {id}
+                    </button>
+                ))}
+                
+            </div>
+            <Resume />            
         </nav>
     );
 }
