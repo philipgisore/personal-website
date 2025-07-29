@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import Hero from './pages/Hero';
+import About from './pages/About';
 
 export default function App() {
   return (
@@ -7,10 +8,7 @@ export default function App() {
       <Navbar />
       
       <Hero />
-      
-      <section id="about" className="h-screen flex items-center justify-center">
-        <h1 className="text-4xl font-bold">About</h1>
-      </section>
+      <About />
       
       <section id="projects" className="h-screen flex items-center justify-center">
         <h1 className="text-4xl font-bold">Projects</h1>
