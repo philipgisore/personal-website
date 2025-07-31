@@ -327,31 +327,7 @@ export default function Projects() {
                     </p>
                 </div>
             </div>
-
-            <style jsx>{`
-                @keyframes float {
-                    0$, 100% { transform: translateY(0px) rotate(0deg); }
-                    50% { transform: translateY(-20px) rotate(180deg); }
-                }
-
-                @keyframes twinkle {
-                    0%, 100% { opacity: 0.3; transform: scale(1); }
-                    50% { opacity: 1; transform: scale(1.5); }
-                }
-
-                @keyframes slide-in-left {
-                    from { opacity: 0; transform: translateX(-30px); }
-                    to { opacity: 1; transform: translateX(0); }
-                }
-
-                .animate-float {
-                    animation: twinkle ease-in-out infinite;
-                }
-
-                .animate-slide-in-left {
-                    animation: slide-in-left 0.8s ease-out;
-                }
-            `}</style>
+            
         </section>
     )
 }
