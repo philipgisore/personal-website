@@ -214,7 +214,7 @@ export default function Contact() {
                                         <h3 className="text-white font-semibold mb-1 text-sm md:text-base">Call Me</h3>
                                         <p className="text-slate-400 text-xs md:text-sm mb-2">Call Any Day</p>
                                         <a 
-                                            href="tel:+254723309866"
+                                            href="tel:+254 790623066"
                                             className="text-orange-400 hover:text-orange-300 transition-colors text-sm md:text-base"
                                         >
                                             +254 790623066
@@ -315,7 +315,7 @@ export default function Contact() {
                                                         placeholder="Your full name"
                                                     />
                                                     {focusedField === 'name' && !errors.name && (
-                                                        <div className="flex items-center gap-2 mt-2 text-red-400/50 rounded-xl pointer-events-none animate-pulse" />
+                                                        <div className="absolute inset-0 border border-orange-400/50 rounded-xl pointer-events-none animate-pulse" />
                                                     )}
                                                     {errors.name && (
                                                         <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
@@ -327,8 +327,86 @@ export default function Contact() {
                                             </div>
 
                                             {/* Email Field */}
+
+                                            <div className="space-y-2">
+                                                <label htmlFor="email" className="text-slate-200 font-medium text-sm md:text-base">
+                                                    Email*
+                                                </label>
+                                                <div className={`relative transition-all duration-300 ${
+                                                    focusedField === 'email' ? 'transform scale-[1.02]' : ''
+                                                }`}>
+                                                    <input 
+                                                        id="email"
+                                                        type="email"
+                                                        name="email"
+                                                        value={formData.email}
+                                                        onChange={handleInputChange}
+                                                        onFocus={() => setFocusedField('email')}
+                                                        onBlur={handleBlur}
+                                                        required
+                                                        className={`w-full px-4  py-3 bg-slate-800/70 border rounded-xl text-white placeholder-slate-400 focus:outline-none transition-all duration-200 ${
+                                                            errors.email
+                                                                ? 'border-red-500 focus:border-red-400'
+                                                                : focusedField === 'email'
+                                                                    ? 'border-orange-400/70'
+                                                                    : 'border-slate-700/60 focus:border-orange-400/50'
+                                                        }`}
+                                                        placeholder="your.email@example.com"
+                                                    />
+                                                    {focusedField === 'email' && !errors.email && (
+                                                        <div className="absolute inset-0 border border-orange-400/50 rounded-xl pointer-events-none animate-pulse" />
+                                                    )}
+                                                    {errors.email && (
+                                                        <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
+                                                            <AlertCircle className="w-4 h-4"/>
+                                                            {errors.email}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            {/* Subject Field */}
+                                            <div className="space-y-2">
+                                                <label htmlFor="subject" className="text-slate-200 font-medium text-sm:text-base">
+                                                    Subject*
+                                                </label>
+                                                <div className={`relative transition-all duration-300 ${
+                                                    focusedField === 'subject' ? 'transform scale-[1,05]' : ''
+                                                }`}>
+                                                    <input 
+                                                        id="subject"
+                                                        type="text"
+                                                        name="subject"
+                                                        value={formData.subject}
+                                                        onChange={handleInputChange}
+                                                        onFocus={() =>setFocusedField('subject')}
+                                                        onBlur={handleBlur}
+                                                        required
+                                                        className={`w-full px-4 py-3 bg-slate-800/70 border rounded-xl text-white placeholder-slate-400 focus:outline-none transition-all duration-200 ${
+                                                            errors.subject
+                                                                ? 'border-red-500 focus:border-red-400'
+                                                                : focusedField === 'subject'
+                                                                    ? 'border-red-500 focus:border-red-400'
+                                                                    : 'border-slate-700/60 focus:border-orange-400/50'
+                                                        }`}
+                                                        placeholder="What's this about?"
+                                                    />
+                                                    {focusedField === 'subject' && !errors.subject && (
+                                                        <div className="absolute inset-0 border border-orange-400/50 rounded-xl pointer-events-none animate-pulse"/>
+                                                    )}
+                                                    {errors.subject && (
+                                                        <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
+                                                            <AlertCircle className="w-4 h-4" />
+                                                            {errors.subject}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            {/* Message Field */}
+                                            
                                         </div>
-                                    )}
+                                    ) : null}
                                 </div>
                         </div>
                     </div>
