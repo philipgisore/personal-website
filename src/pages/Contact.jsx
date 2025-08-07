@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle, Twitter, Github, Linkedin, MessageCircle, Clock, Globe, AlertCircle } from 'lucide-react';
+import { div } from "framer-motion/client";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ export default function Contact() {
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState();
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const [focusedField, setFocusedField] = useState();
     const [errors, setErrors] = useState({});
     const [isVisible, setIsVisible] = useState(false);
@@ -24,7 +25,7 @@ export default function Contact() {
                     setIsVisible(true);
                 }
             },
-            { threshold: 0.1}
+            { threshold: 0.1 }
         );
 
         if (sectionRef.current) {
@@ -62,7 +63,7 @@ export default function Contact() {
                 if (!value.trim()) {
                     newErrors.subject = 'Subject is required'
                 } else if (value.trim().length < 3) {
-                    newErrors.subject = 'Subject must be atleastv 3 characters';
+                    newErrors.subject = 'Subject must be atleast 3 characters';
                 } else {
                     delete newErrors.subject;
                 }
@@ -71,7 +72,7 @@ export default function Contact() {
             case 'message':
                 if (!value.trim()) {
                     newErrors.message = 'Message is required'
-                } else if (value.trim() < 10) {
+                } else if (value.trim().length < 10) {
                     newErrors.message = 'Message must be atleast 10 characters'
                 } else {
                     delete newErrors.message;
@@ -80,7 +81,7 @@ export default function Contact() {
         }
 
         setErrors(newErrors);
-        return object.keys(newErrors).length === 0;
+        return Object.keys(newErrors).length === 0;
     };
 
     const handleSubmit = async (e) => {
@@ -112,6 +113,25 @@ export default function Contact() {
         }, 3000);
     };
 
+    const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Validate field on change if it has an error
+    if (errors[name]) {
+      validateField(name, value);
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    validateField(name, value);
+    setFocusedField(null);
+  };
+
     return (
         <section
             id="contact"
@@ -131,7 +151,7 @@ export default function Contact() {
 
                 {/*Animated lines */}
                 <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-orange-500/20 to-transparent animate-pulse delay-500" />
-                <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-orange-500/20 to-transpatent animate-pulse-1500" />
+                <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-orange-500/20 to-transparent animate-pulse-1500" />
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
@@ -156,7 +176,7 @@ export default function Contact() {
 
                 {/* Main Content */}
                 <div className={`grid lg:grid-cols-3 gap-8 lg:gap-12 items-starts transition-all duration-1000 delay-400 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 tranlate-y-10'
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}>
 
                     {/* left side - Contact Info */}
@@ -204,6 +224,112 @@ export default function Contact() {
                             </div>
 
                             {/* Location Card */}
+                            <div className="group bg-slate-900/70 backdrop-blur-sm border border-slate-700/60 rounded-2xl p-4 md:p-6 hover:border-orange-400/50 transition-all duration-300 hover:scale-105 hover:bg-slate-900/80">
+                                <div className="flex items-start gap-3 md:gap-4">
+                                    <div className="p-2 md:p-3 bg-orange-400/10 rounded-xl group-hover:bg-orange-400/20 transition-colors">
+                                        <MapPin className="w-5 h-5 md:w-6 md:h-6 text-orange-400"/>
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-white font-semibold mb-1 text-sm md:text-base">Location</h3>
+                                        <p className="text-slate-400 text-xs md:text-sm mb-2">Based in</p>
+                                        <p className="text-orange-400 text-sm md:text-base">
+                                            Nairobi, Kenya
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            { /*Timezone Card */}
+                            <div className="group bg-slate-900/70 backdrop-blur-sm border border-slate-700/60 rounded-2xl p-4 md:p-6 hover:border-orange-400/50 transition-all duration-300 hover:scale-105 hover:bg-slate-900/80">
+                                <div className="flex items-start gap-3 md:gap-4">
+                                    <div className="p-2 md:p-3 bg-orange-400/10 rounded-xl group-hover:bg-orange-400/20 transition-colors">
+                                        <Clock className="w-5 h-5 md:w-6 md:h-6 text-orange-400" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-white font-semibold mb-1 text-sm md:text-base">Timezone</h3>
+                                        <p className="text-slate-400 text-xs md:text-sm mb-2">Kenya</p>
+                                        <p className="text-orange-400 text-sm md:text-base">GMT+3</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Social Links */}
+                        <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/60 rounded-2xl p-4 md:p-6">
+                            <h3 className="text-white font-semibold mb-4 text-sm md:text-base">Follow Me</h3>
+                            <div className="flex gap-3 md:gap-4">
+                                {[
+                                    { icon: Github, href: "#", label: 'Github' },
+                                    { icon: Linkedin, href: "#", label: 'LinkedIn' },
+                                    { icon: Twitter, href: "#", label: 'Twitter' },
+                                
+                                ].map((social, index) => (
+                                    <a
+                                        key={index}
+                                        href={social.href}
+                                        className="p-2 md:p-3 bg-slate-800/50 hover:bg-orange-400 border border-slate-700/50 hover:border-orange-400 rounded-xl text-slate-400 hover:text-white transition-all duration-200 group"
+                                        title={social.label}
+                                        aria-label={social.label}
+                                    >
+                                        <social.icon className="w-4 h-4 md:w-5 md:h-5 group-hover:scale-110 transition-transform"/>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Side - Contact Form */}
+                    <div className="lg:col-span-2">
+                        <div className="bg-slate-900/70 backdrop-blur-sm border border-slate-700/60 rounded-2xl p-6 md:p-8 relative overflow-hidden">
+                                {/* Form Background Effect */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-transparent opacity-50" />
+
+                                <div className="relative z-10">
+                                    {!isSubmitted ? (
+                                        <div className="space-y-6">
+
+                                            {/* Name Field */}
+                                            <div className="space-y-2">
+                                                <label htmlFor="name" className="text-slate-200 font-medium text-sm md:text-base">
+                                                    Name*
+                                                </label>
+                                                <div className={`relative transition-all duration-300 ${
+                                                    focusedField === 'name' ? 'scale-[1.02] transform' : ''
+                                                }`}>
+                                                    <input 
+                                                        id="name"
+                                                        type="text"
+                                                        name="name"
+                                                        value={formData.name}
+                                                        onChange={handleInputChange}
+                                                        onFocus={() => setFocusedField('name')}
+                                                        onBlur={handleBlur}
+                                                        required
+                                                        className={`w-full px-4 py-3 bg-slate-800/70 border rounded-xl text-white placeholder-slate-400 focus:outline-none transition-all duration-200 ${
+                                                            errors.name
+                                                             ? 'border-red-500 focus:border-red-400'
+                                                             : focusedField === 'name'
+                                                                ? 'border-orange-400/70'
+                                                                : 'border-slate-700/60 focus:border-orange-400/50'
+                                                        }`}
+                                                        placeholder="Your full name"
+                                                    />
+                                                    {focusedField === 'name' && !errors.name && (
+                                                        <div className="flex items-center gap-2 mt-2 text-red-400/50 rounded-xl pointer-events-none animate-pulse" />
+                                                    )}
+                                                    {errors.name && (
+                                                        <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
+                                                            <AlertCircle className="w-4 h-4" />
+                                                            {errors.name}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            {/* Email Field */}
+                                        </div>
+                                    )}
+                                </div>
                         </div>
                     </div>
                 </div>

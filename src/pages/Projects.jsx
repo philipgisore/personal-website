@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ExternalLink, Github, Code, Sparkles, Eye, ArrowRight, Play, Subtitles } from 'lucide-react';
-import { div } from 'framer-motion/client';
+
 
 export default function Projects() {
     const [visibleProjects, setVisibleProjects] = useState(new Set());
@@ -92,7 +92,7 @@ export default function Projects() {
             }
         );
 
-        const projectElements = document.querySelectorAll('[data-project-id')
+        const projectElements = document.querySelectorAll('[data-project-id]')
         projectElements.forEach(el => observer.observe(el));
 
         return () => observer.disconnect();
