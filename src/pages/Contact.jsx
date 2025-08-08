@@ -14,7 +14,7 @@ export default function Contact() {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [focusedField, setFocusedField] = useState();
     const [errors, setErrors] = useState({});
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const sectionRef = useRef(null);
 
     //Intersection Observer for animation
@@ -25,7 +25,7 @@ export default function Contact() {
                     setIsVisible(true);
                 }
             },
-            { threshold: 0.1 }
+            { threshold: 0.2 }
         );
 
         if (sectionRef.current) {
@@ -136,7 +136,7 @@ export default function Contact() {
         <section
             id="contact"
             ref={sectionRef}
-            className={`min-h-screen bg-black py-12 md:py-20 px-4 md:px-8 relative overflow-hidden transition-all duration-1000 ${
+            className={`min-h-screen bg-black py-8 md:py-12 px-4 md:px-8 relative overflow-hidden transition-all duration-1000 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
         >
@@ -157,8 +157,8 @@ export default function Contact() {
             <div className="max-w-7xl mx-auto relative z-10">
 
                 {/* header */}
-                <div className={`text-center mb-12 md:mb-16 transition-all duration-1000 delay-200 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                <div className={`text-center mb-12 md:mb-16 transition-all duration-700 delay-100 ${
+                    isVisible ? 'opacity-100' : 'opacity-0'
                 }`}>
                     <div className="inline-flex items-center gap-2 text-orange-400 text-sm font-medium mb-6 px-4 py-2 bg-orange-400/10 rounded-full border border-orange-400/20">
                         <MessageCircle className="w-4 h-4" />
@@ -175,8 +175,8 @@ export default function Contact() {
                 </div>
 
                 {/* Main Content */}
-                <div className={`grid lg:grid-cols-3 gap-8 lg:gap-12 items-starts transition-all duration-1000 delay-400 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                <div className={`grid lg:grid-cols-3 gap-8 lg:gap-12 items-starts transition-all duration-700 delay-200 ${
+                    isVisible ? 'opacity-100' : 'opacity-0 '
                 }`}>
 
                     {/* left side - Contact Info */}
@@ -404,13 +404,97 @@ export default function Contact() {
                                             </div>
 
                                             {/* Message Field */}
+                                            <div className="space-y-2">
+                                                <label htmlFor="message" className="text-slate-200 font-medium text-sm md:text-base">
+                                                    message*
+                                                </label>
+                                                <div className={`relative transition-all duration-300 ${
+                                                    focusedField === 'message' ? 'transform scale-[1.02]': ''
+                                                }`}>
+                                                    <textarea 
+                                                        id="message"
+                                                        name="message"
+                                                        value={formData.message}
+                                                        onChange={handleInputChange}
+                                                        onFocus={() => setFocusedField('message')}
+                                                        onBlur={handleBlur}
+                                                        required
+                                                        rows={6}
+                                                        className={`w-full px-4 py-3 bg-slate-800/70 border rounded-xl text-white placeholder-slate-400 focus:outline-none transition-all duraton-200 resize-none ${
+                                                            errors.message
+                                                                ? 'border-red-500 focus:border-red-400'
+                                                                : focusedField === 'message'
+                                                                    ? 'border-orange-400/70'
+                                                                    : 'border-slate-700/60 focus:border-orange-400/50n'
+                                                        }`}
+                                                        placeholder="Tell me about your project, ideas, or just say hello! I'd love to hear from you."
+                                                    />
+                                                    {focusedField === 'message' && !errors.message && (
+                                                        <div className="absolute inset-0 border border-orange-400/50 rounded-xl pointer-events-none animate-pulse" />
+                                                    )}
+                                                    {errors.message && (
+                                                        <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
+                                                            <AlertCircle className="w-4 h-4" />
+                                                            {errors.message}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
                                             
+                                            {/* Submit Button */}
+                                            <button
+                                                type="submit"
+                                                disabled={isSubmitting || Object.keys(errors).length > 0}
+                                                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-700 text-white foont-semibold rounded-xl transition-all duration-200 transform hove:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 group"
+                                                aria-label="Send Message"
+                                            >
+                                                {isSubmitting ? (
+                                                    <>
+                                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                                        Sending Message...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                                        Send Message
+                                                    </>
+                                                )}
+                                            </button>
                                         </div>
-                                    ) : null}
+                                    ) : (
+                                        //Success Message
+                                        <div className="text-center py-8 md:py-12">
+                                            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-6">
+                                                <CheckCircle className="w-8 h-8 text-green-400" />
+                                            </div>
+                                            <h3 className="text-xl md:text-2xl font-bold text-white mb-4">Message Sent!</h3>
+                                            <p className="text-slate-300 mb-6 text-sm md:text-base">
+                                                Thanks for reaching out! I'll get back to you within 24 hours.
+                                            </p>
+                                            <div className="w-full bg-slate-800/50 rounded-full h-1">
+                                                <div className="bg-green-400 h-1 rounded-full animate-pulse" style={{ width: '100%'}} />
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                         </div>
                     </div>
                 </div>
+
+              {/* Bottom Note */}
+              <div className={`text-centermt-12 md:mt-6 md:pt-8 border-t border-slate-800/50 transition-all duration-700 delay-300 ${
+                isVisible ? 'opacity-100' : 'opacity-0'
+              }`}>
+                    <p className="text-slate-400 text-sm md:text-base">
+                        Prefer email? Reach me directly at{' '}
+                        <a 
+                            href="mailto:philipgisore7@gmail.com"
+                            className="text-orange-400 hover:text-orange-300 transition-colors"
+                        >
+                            philipgisore7@gmail.com
+                        </a>
+                    </p>
+                </div>  
             </div>
         </section>
     );

@@ -154,7 +154,7 @@ export default function Projects() {
                         <Sparkles className='w-4 h-4 animate-pulse'/>
                     </div>
 
-                    <h2 className='text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-orange-400 to-white mb-6'>
+                    <h2 className='text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-orange-400 to-white mb-4'>
                         My Work
                     </h2>
 
@@ -317,7 +317,7 @@ export default function Projects() {
                 </div>
 
                 {/* Footer */}
-                <div className='text-center mt-32 pt-16 border-t border-slate-800/30'>
+                <div className='text-center mt-30 pt-16 border-t border-slate-800/30'>
                     <div className='inline-flex items-center gap-2 text-orange-400 mb-6'>
                         <Sparkles className='w-5 h-5 animate-pulse'/>
                         <span className='font-medium'>More amazing projects in development</span>
