@@ -1,6 +1,6 @@
 import { Link as ScrollLink } from 'react-scroll';
 import { ArrowRight } from 'lucide-react';
-import { div } from 'framer-motion/client';
+// Removed: import { div } from 'framer-motion/client' — this was causing the /resume.pdf routing error
 
 export default function HeroButtons() {
     return (

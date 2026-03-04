@@ -1,20 +1,20 @@
-import Navbar from './components/Navbar';
-import Hero from './pages/Hero';
-import About from './pages/About';
-import Projects from './pages/Projects'
-import Contact from './pages/Contact'
+import { Routes, Route } from "react-router-dom";
+import Layout from "./layout/Layout";
+import Hero from "./pages/Hero";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
 
 export default function App() {
   return (
-    <div className="bg-pink-100 min-h-screen">
-
-      <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
-      
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Hero />} />
+        <Route path="about" element={<About />} />
+        <Route path="projects" element={<Projects />} />
+        <Route path="contact" element={<Contact />} />
+      </Route>
+    </Routes>
   );
 }
 

@@ -290,7 +290,7 @@ export default function Contact() {
 
                                             {/* Name Field */}
                                             <div className="space-y-2">
-                                                <label htmlFor="name" className="text-slate-200 font-medium text-sm md:text-base">
+                                                <label htmlFor="name" className="text-white font-medium text-sm md:text-base">
                                                     Name*
                                                 </label>
                                                 <div className={`relative transition-all duration-300 ${
@@ -329,7 +329,7 @@ export default function Contact() {
                                             {/* Email Field */}
 
                                             <div className="space-y-2">
-                                                <label htmlFor="email" className="text-slate-200 font-medium text-sm md:text-base">
+                                                <label htmlFor="email" className="text-white font-medium text-sm md:text-base">
                                                     Email*
                                                 </label>
                                                 <div className={`relative transition-all duration-300 ${
@@ -367,7 +367,7 @@ export default function Contact() {
 
                                             {/* Subject Field */}
                                             <div className="space-y-2">
-                                                <label htmlFor="subject" className="text-slate-200 font-medium text-sm:text-base">
+                                                <label htmlFor="subject" className="text-white font-medium text-sm:text-base">
                                                     Subject*
                                                 </label>
                                                 <div className={`relative transition-all duration-300 ${
@@ -405,7 +405,7 @@ export default function Contact() {
 
                                             {/* Message Field */}
                                             <div className="space-y-2">
-                                                <label htmlFor="message" className="text-slate-200 font-medium text-sm md:text-base">
+                                                <label htmlFor="message" className="text-white font-medium text-sm md:text-base">
                                                     message*
                                                 </label>
                                                 <div className={`relative transition-all duration-300 ${
