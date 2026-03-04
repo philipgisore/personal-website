@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -31,12 +32,12 @@ export default function Hero() {
         {/* Links */}
         <p className="text-gray-400 mb-8">
           Check out my{" "}
-          <a
-            href="/projects"
+          <Link
+            to="/projects"
             className="text-white underline underline-offset-4 hover:text-gray-300 transition-colors"
-          >
+        >
             projects
-          </a>
+        </Link>
           {" "}or{" "}
           <a
             href="/resume.pdf"
