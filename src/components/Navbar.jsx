@@ -74,7 +74,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-md overflow-visible">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16 sm:h-20">
                         {/* Logo */}
@@ -107,11 +107,11 @@ export default function Navbar() {
                             <Resume />
                         </div>
 
-                        {/* Mobile menu button */}
-                        <div className="md:hidden">
+                        {/* Mobile menu button - Updated for better visibility */}
+                        <div className="md:hidden flex-shrink-0 w-10 h-10 flex items-center justify-center">
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="text-gray-300 hover:text-orange-500 focus:outline-none focus:text-orange-500 transition-colors duration-300"
+                                className="text-white hover:text-orange-500 focus:outline-none focus:text-orange-500 transition-colors duration-300"
                                 aria-label="Toggle menu"
                             >
                                 <svg

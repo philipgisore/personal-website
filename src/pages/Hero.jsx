@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="max-w-2xl">
 
         {/* Heading */}
-        <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+        <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mt-16 mb-6">
           Hi{" "}
           <span
             className="inline-block"
@@ -40,7 +40,7 @@ export default function Hero() {
         </Link>
           {" "}or{" "}
           <a
-            href="/resume.pdf"
+            href="/Philip-Gisore-Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white underline underline-offset-4 hover:text-gray-300 transition-colors"

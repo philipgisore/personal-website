@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import profile from "../assets/profile.jpg";
 
 export default function Sidebar() {
   return (
@@ -8,7 +9,11 @@ export default function Sidebar() {
         {/* Avatar */}
         <div className="w-20 h-20 rounded-full overflow-hidden mb-8 border border-gray-700">
           {/* Replace with: <img src="/your-photo.jpg" alt="Philip" className="w-full h-full object-cover" /> */}
-          <div className="w-full h-full bg-gradient-to-br from-gray-600 to-gray-800" />
+         <img
+  src={profile}
+  alt="Philip Gisore"
+  className="w-full h-full object-cover"
+/>
         </div>
 
         {/* Nav */}
