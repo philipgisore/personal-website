@@ -1,194 +1,164 @@
-import React, { useState, useEffect } from 'react';
-import {
-  MapPin,
-  Calendar,
-  Code,
-  Coffee,
-  Award,
-  ExternalLink
-} from 'lucide-react';
+import React from 'react';
 
 export default function About() {
-  const [currentFact, setCurrentFact] = useState(0);
-
-  const funFacts = [
-    "I've built over 50+ web applications",
-    "Coffee enthusiast - 3 cups minimum per day",
-    "I speak 3 programming languages fluently",
-    "Night owl - my best code happens after 10PM"
+  const skills = [
+    { category: 'Languages',      items: ['JavaScript', 'Python', 'TypeScript'] },
+    { category: 'Frontend',       items: ['React', 'Next.js', 'Tailwind CSS', 'HTML5', 'CSS3'] },
+    { category: 'Backend',        items: ['Node.js', 'Django', 'REST APIs', 'Express.js'] },
+    { category: 'Databases',      items: ['MySQL', 'PostgreSQL', 'MongoDB'] },
+    { category: 'Cloud & DevOps', items: ['Firebase'] },
+    { category: 'Tools',          items: ['Git', 'Figma', 'VS Code'] },
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentFact((prev) => (prev + 1) % funFacts.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section
       id='about'
-      className='min-h-screen bg-black p-8 flex items-center justify-center relative'
+      className='min-h-screen bg-[#1c1c1c] flex flex-col items-center'
+      style={{ padding: '4rem 2rem' }}
     >
-      <div className='max-w-6xl w-full'>
+      {/* push content below fixed mobile header */}
+    <div className="md:hidden" style={{ height: '80px', flexShrink: 0 }} />
+      <div className='w-full' style={{ maxWidth: '900px' }}>
 
-        {/* Header */}
-        <div className='text-center mb-16'>
-          <div className='inline-flex items-center gap-2 text-orange-400 text-sm font-medium mb-4 px-4 py-2 bg-orange-400/10 rounded-full border border-orange-400/20'>
-            <Code className='w-4 h-4' />
-            ABOUT ME
-          </div>
-          <h2 className='text-4xl font-bold text-white mb-4'>Meet Philip</h2>
-          <p className='text-slate-400 text-lg max-w-2xl mx-auto'>
-            Full-stack developer passionate about creating digital experiences that matter
+        {/* ── About Me ── */}
+        <div className='section-header flex items-center gap-2 mb-8'>
+          <svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#ffffff' strokeWidth='1.5' style={{ flexShrink: 0 }}>
+            <path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2' />
+            <circle cx='12' cy='7' r='4' />
+          </svg>
+          <h2 className='text-3xl font-bold text-white m-0'>About Me</h2>
+        </div>
+
+        <div className='mb-16'>
+          <p className='text-[15px] leading-[1.85] text-slate-300 mb-6'>
+            I'm a Business Information Technology student who cares about building things that actually work —
+            not just code that runs, but solutions that solve real problems. My interest sits
+            where clean code meets the real world, whether that's making a frontend feel
+            responsive or thinking through what's happening on the backend.
+          </p>
+          <p className='text-[15px] leading-[1.85] text-slate-300 mb-6'>
+            I work with React, Node.js, and Python across coursework, personal projects, and
+            open-source contributions. I got into development by pulling apart websites just to
+            see how they worked — that curiosity turned into a genuine drive to build seamless,
+            purposeful digital experiences. I've learned that the difference between something
+            that works and something people actually want to use is almost always in the details.
+          </p>
+          <p className='text-[15px] leading-[1.85] text-slate-300 mb-6'>
+            I thrive in collaborative environments and I'm actively looking for internship and
+            junior developer opportunities where I can contribute meaningfully and grow fast —
+            without skipping the details along the way.
           </p>
         </div>
 
-        {/* About Card */}
-        <div className='bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 md:p-12 shadow-2xl relative'>
-          <div className='grid md:grid-cols-2 gap-12 items-center'>
-
-            {/* Left Side - Personal Info */}
-            <div className='space-y-6'>
-              {/* Avatar and Name */}
-              <div className='flex items-center gap-6'>
-                <div className='relative group'>
-                  <div className='w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 p-0.5 transition-transform group-hover:scale-105'>
-                    <div className='w-full h-full rounded-full bg-slate-200 overflow-hidden'>
-                      <img
-                        src='/api/placeholder/150/150'
-                        alt='Philip - Full Stack Developer'
-                        className='w-full h-full object-cover transition-transform group-hover:scale-110'
-                      />
-                    </div>
-                  </div>
-                  <div className='absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-slate-800 animate-pulse' />
-                </div>
-
-                <div>
-                  <h3 className='text-3xl font-bold text-orange-400 mb-2'>Philip Gisore</h3>
-                  <p className='text-slate-300 font-medium text-lg mb-1'>Full Stack Developer</p>
-                  <div className='flex items-center gap-2 text-slate-400 text-sm'>
-                    <MapPin className='w-4 h-4' />
-                    <span>Nairobi, Kenya</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick Stats */}
-              <div className='grid grid-cols-2 gap-4'>
-                {[
-                  { icon: <Calendar className='w-4 h-4 text-orange-400' />, label: 'Status', value: 'Available' },
-                  { icon: <Award className='w-4 h-4 text-orange-400' />, label: 'Focus', value: 'Learning' }
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className='bg-slate-700/30 p-4 rounded-lg border border-slate-600/30'
-                  >
-                    <div className='flex items-center gap-2 mb-1'>
-                      {item.icon}
-                      <span className='text-slate-400 text-sm'>{item.label}</span>
-                    </div>
-                    <p className='text-white font-semibold'>{item.value}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Fun Fact */}
-              <div className='bg-gradient-to-r from-orange-400/10 to-orange-600/10 p-4 rounded-lg border border-orange-400/20'>
-                <div className='flex items-center gap-2 mb-2'>
-                  <Coffee className='w-4 h-4 text-orange-400' />
-                  <span className='text-orange-400 text-sm font-medium'>Fun Fact</span>
-                </div>
-                <p className='text-white text-sm transition-all duration-500'>
-                  {funFacts[currentFact]}
-                </p>
-              </div>
-
-              {/* Social Links */}
-              <div className='flex gap-3'>
-                {[
-                  { name: 'Portfolio', url: '#' },
-                  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/philip-gisore-95a7aa265/' },
-                  { name: 'GitHub', url: 'https://github.com/philipgisore' }
-                ].map((link, index) => (
-                  <a
-                    key={index}
-                    href={link.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='px-4 py-2 bg-slate-700/50 hover:bg-slate-600/50 border border-slate-600/50 rounded-lg text-slate-300 hover:text-white text-sm transition-all duration-200 flex items-center gap-2 group'
-                  >
-                    {link.name}
-                    <ExternalLink className='w-3 h-3 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform' />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Side - Story + Tech Stack */}
-            <div className='space-y-6'>
-              <div className='space-y-4'>
-                <h4 className='text-xl font-semibold text-orange-400 mb-4'>My Story</h4>
-                <p className='text-slate-300 leading-relaxed'>
-                  I'm an aspiring full-stack developer with a passion for creating digital solutions that make a difference.
-                  My journey into web development started with curiosity about how websites work, and it quickly grew into a
-                  deep fascination with building seamless user experiences.
-                </p>
-                <p className='text-slate-300 leading-relaxed'>
-                  I'm currently focused on mastering React, JavaScript, and modern web technologies. What drives me is the ability
-                  to turn ideas into reality through code, and I'm excited to bring fresh perspectives to every project I work on.
-                </p>
-                <p className='text-slate-300 leading-relaxed'>
-                  When I'm not coding, you'll find me learning new technologies, working on personal projects, or enjoying a good
-                  cup of coffee while planning my next creation.
-                </p>
-              </div>
-
-              {/* Skills */}
-              <div>
-                <h5 className='text-orange-400 font-medium mb-3'>Tech Stack</h5>
-                <div className='flex flex-wrap gap-2'>
-                  {[
-                    'HTML5', 'CSS3', 'JavaScript', 'React', 'Tailwind CSS',
-                    'Git', 'Figma', 'MySQL', 'Django', 'Learning'
-                  ].map((skill, index) => (
-                    <span
-                      key={index}
-                      className='px-3 py-1 bg-slate-700/50 text-slate-300 text-sm rounded-full border border-slate-600/50 hover:border-orange-400/50 hover:text-orange-300 transition-all duration-200'
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* ── Skills ── */}
+        <div className='section-header flex items-center gap-2 mb-12'>
+          <svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#ffffff' strokeWidth='1.5' style={{ flexShrink: 0 }}>
+            <path d='M12 20h9' />
+            <path d='M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z' />
+          </svg>
+          <h2 className='text-3xl font-bold text-white m-0'>Skills</h2>
         </div>
 
-        {/* Bottom Stats */}
-        <div className='mt-16 grid grid-cols-2 md:grid-cols-4 gap-8'>
-          {[
-            { label: 'Projects Built', value: '10+', icon: '💻' },
-            { label: 'Technologies', value: '9+', icon: '🚀' },
-            { label: 'Coffee Cups', value: '∞', icon: '☕' },
-            { label: 'Learning Hours', value: 'Daily', icon: '📚' }
-          ].map((stat, index) => (
-            <div key={index} className='text-center group'>
-              <div className='text-2xl mb-2 transition-transform group-hover:scale-110'>{stat.icon}</div>
-              <div className='text-2xl md:text-3xl font-bold text-orange-400 mb-1'>{stat.value}</div>
-              <div className='text-slate-400 text-sm'>{stat.label}</div>
+        <div
+          className='mb-16 skills-grid'
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            columnGap: '3rem',
+            rowGap: '2.5rem',
+          }}
+        >
+          {skills.map((group) => (
+            <div key={group.category}>
+              <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '16px' }}>
+                {group.category}
+              </h3>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {group.items.map((skill) => (
+                  <span
+                    key={skill}
+                    style={{
+                      padding: '4px 12px',
+                      fontSize: '12.5px',
+                      color: '#cbd5e1',
+                      borderRadius: '9999px',
+                      border: '1px solid #475569',
+                      background: 'transparent',
+                    }}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
+
+        {/* ── Education ── */}
+        <div className='section-header flex items-center gap-2 mb-8'>
+          <svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='#ffffff' strokeWidth='1.5' style={{ flexShrink: 0 }}>
+            <path d='M22 10v6M2 10l10-5 10 5-10 5z' />
+            <path d='M6 12v5c3 3 9 3 12 0v-5' />
+          </svg>
+          <h2 className='text-3xl font-bold text-white m-0'>Education</h2>
+        </div>
+
+        <div
+          className='w-full transition hover:border-slate-500'
+          style={{
+            background: '#242424',
+            border: '1px solid #2e2e2e',
+            borderRadius: '12px',
+            padding: '1.25rem 1.5rem',
+          }}
+        >
+          <h3 className='text-white font-bold text-[16px] leading-snug mb-1'>
+            Bachelor of Business Information Technology{' '}
+            <span className='text-white'>@ Multimedia University of Kenya</span>
+          </h3>
+          <p className='text-slate-400 text-[13.5px] mb-3'>Nairobi, Kenya</p>
+          <p className='text-[13.5px] text-slate-300 mb-2'>
+            <span className='font-bold text-white'>Status: </span>
+            Currently Studying
+          </p>
+          <p className='text-[13.5px] text-slate-300 leading-relaxed'>
+            <span className='font-bold text-white'>Relevant coursework: </span>
+            Software Engineering, Data Structures and Algorithms, Database Systems,
+            Web Development, Networking, and Human Computer Interaction.
+          </p>
+        </div>
+
       </div>
 
-      {/* Background Elements */}
-      <div className='fixed inset-0 -z-10 overflow-hidden'>
-        <div className='absolute top-1/4 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse' />
-        <div className='absolute bottom-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl' />
-        <div className='absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/5 rounded-full blur-2xl' />
-      </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .skills-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            column-gap: 2rem !important;
+          }
+        }
+        @media (max-width: 480px) {
+          #about {
+            padding: 3rem 1.25rem !important;
+          }
+          #about h2 {
+            font-size: 1.4rem !important;
+            white-space: nowrap;
+          }
+          .section-header {
+            flex-wrap: nowrap !important;
+            overflow: hidden;
+          }
+        }
+        @media (max-width: 380px) {
+          .skills-grid {
+            grid-template-columns: repeat(1, 1fr) !important;
+          }
+          #about h2 {
+            font-size: 1.25rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
